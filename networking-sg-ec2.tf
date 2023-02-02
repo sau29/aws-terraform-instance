@@ -55,20 +55,20 @@ resource "aws_security_group" "rearc-quest-tasks-trfm-sg-ec2" {
 }
 
 resource "aws_security_group_rule" "rearc-quest-tasks-trfm-sg-ec2-egr-addon" {
-  security_group_id        = "${aws_security_group.rearc-quest-tasks-trfm-sg-alb.id}"
+  security_group_id        = aws_security_group.rearc-quest-tasks-trfm-sg-alb.id
   from_port                = 0
   to_port                  = 0
   protocol                 = "-1"
   type                     = "egress"
-  source_security_group_id = "${aws_security_group.rearc-quest-tasks-trfm-sg-ec2.id}"
+  source_security_group_id = aws_security_group.rearc-quest-tasks-trfm-sg-ec2.id
 }
 resource "aws_security_group_rule" "rearc-quest-tasks-trfm-sg-ec2-ingr-addon" {
-  security_group_id        = "${aws_security_group.rearc-quest-tasks-trfm-sg-alb.id}"
+  security_group_id        = aws_security_group.rearc-quest-tasks-trfm-sg-alb.id
   from_port                = 0
   to_port                  = 0
   protocol                 = "-1"
   type                     = "ingress"
-  source_security_group_id = "${aws_security_group.rearc-quest-tasks-trfm-sg-ec2.id}"
+  source_security_group_id = aws_security_group.rearc-quest-tasks-trfm-sg-ec2.id
 }
 
 output "aws_security_group_ec2id_output" {

@@ -38,11 +38,11 @@ resource "aws_security_group" "rearc-quest-tasks-trfm-sg-alb" {
   }
 
   egress {
-    cidr_blocks     = ["0.0.0.0/0"]
-    description     = "Egress SG Rule forwarding all traffic to EC2 SG"
-    from_port       = 0
-    protocol        = "-1"
-    to_port         = 0
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "Egress SG Rule forwarding all traffic to EC2 SG"
+    from_port   = 0
+    protocol    = "-1"
+    to_port     = 0
   }
 
   tags = {
@@ -52,12 +52,12 @@ resource "aws_security_group" "rearc-quest-tasks-trfm-sg-alb" {
 }
 
 resource "aws_security_group_rule" "rearc-quest-tasks-trfm-sg-alb-egr-addon" {
-  security_group_id        = "${aws_security_group.rearc-quest-tasks-trfm-sg-ec2.id}"
+  security_group_id        = aws_security_group.rearc-quest-tasks-trfm-sg-ec2.id
   from_port                = 0
   to_port                  = 0
   protocol                 = "-1"
   type                     = "egress"
-  source_security_group_id = "${aws_security_group.rearc-quest-tasks-trfm-sg-alb.id}"
+  source_security_group_id = aws_security_group.rearc-quest-tasks-trfm-sg-alb.id
 }
 
 
